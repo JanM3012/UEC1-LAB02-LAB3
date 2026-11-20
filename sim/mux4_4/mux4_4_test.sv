@@ -13,16 +13,7 @@ module mux4_4_test;
         .input_selected
     );
 
-    /*always_comb begin
-        case (sel)
-            4'b1110: input_selected_exp = input0;
-            4'b1101: input_selected_exp = input1;
-            4'b1011: input_selected_exp = input2;
-            4'b0111: input_selected_exp = input3;
-            default: input_selected_exp = 4'bx;
-        endcase
-    end
-    */
+    
     initial begin
         $monitor("t=%0t, sel=%b, input0=%b, input1=%b, input2=%b, input3=%b, input_sel=%b", $time, sel, input0, input1, input2, input3, input_selected);
         

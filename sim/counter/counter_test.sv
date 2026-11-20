@@ -2,21 +2,26 @@
 
 module counter_test;
 
-
+localparam WIDTH = 4;
 /* Local variables and signals */
 
 logic clk, rst_n;
 
-logic [3:0] value;
+logic [WIDTH-1:0] value;
 logic enabled;
 
+logic overflow;
 
 /* Submodules placement */
 
-counter dut (
+counter #(
+    .MAX_COUNT(9),
+    .WIDTH(WIDTH)
+) dut (
     .clk,
     .rst_n,
     .enabled,
+    .overflow,
     .value
 );
 
@@ -48,7 +53,7 @@ task test_enabled_counter();
 
     reset();
 
-    for (int i = 0; i < 10; ++i) begin
+    for (int i = 0; i < 25; ++i) begin
         assert (value == i) else begin
             $error("value: exp: %1d, rcv: %1d", i, value);
         end
